@@ -1,0 +1,28 @@
+
+
+<html>
+    <body>
+        <h1>CORS 경험해보고-해결하기</h1>
+
+        <ul id="channels">
+
+        </ul>
+
+
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
+        <script>
+
+            //JQuery AJAX 기능으로 백엔드 RESTFul 데이터를 조회한다.
+            $.get('http://localhost:3000/api/channel/search',function(result){
+
+                console.log("백엔드에서 제공해주는 JSON 데이터",result);
+
+            });
+
+
+
+        </script>
+    </body>
+</html>

@@ -1,0 +1,44 @@
+<html>
+    <body>
+        <h1>자바스크립트 함수 사용법</h1>
+
+
+        <script>
+
+            //일반적인 자바스크립트 함수정의 및 사용법
+            function fnPlus(a,b){
+                let c = a+b;
+                return c; 
+            };
+
+            var result = fnPlus(1,2);
+            console.log("전통적인 자바스크립트 함수의 결과값 확인:",result);
+
+
+            //익명함수를 통해 함수를 정의해보자
+            var plus1 = function(a,b){
+                return a+b;
+            };
+
+            //익명함수를 실행해보자.
+            var result1 = plus1(1,5);
+            console.log('익명함수를 실행결과를 확인해봅니다.',result1);
+
+
+            //화살표 함수 사용법을 알아봅니다.
+            var plus2 = (a,b)=>{
+                return a+b;
+            };
+
+            console.log('화살표함수를 실행해봅니다.',plus2(10,20));
+
+            //화살표 함수안에서 return 예약어까 생략할수 있습니다.
+            var plus3 = (a,b)=>(a+b);
+            console.log('화살표함수의 return 예약어까지 생략해서 짧게 함수를 구현하는방법:',plus3(30,50));
+
+
+
+
+        </script>
+    </body>
+</html>

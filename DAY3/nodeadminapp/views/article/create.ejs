@@ -1,0 +1,83 @@
+        <!--우측 콘텐츠 헤더영역 -->
+        <div class="row wrapper border-bottom white-bg page-heading">
+            <div class="col-lg-10">
+                <h2>게시글 신규등록</h2>
+                <ol class="breadcrumb">
+                    <li>
+                        <a href="/">Home></a>
+                    </li>
+                    <li>
+                        <a>게시글관리></a>
+                    </li>
+                    <li class="active">
+                        <strong>신규</strong>
+                    </li>
+                </ol>
+            </div>
+            <div class="col-lg-2">
+
+            </div>
+        </div>
+
+        <!--우측 콘텐츠 영역 -->
+        <div class="wrapper wrapper-content">
+            <form action="/article/create" method="post" id="articleForm">
+                <div class="ibox-content m-b-sm border-bottom">
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label class="control-label">게시글 제목</label>
+                                <input type="text" name="title" id="title" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label class="control-label">글내용</label>
+                                <textarea class="form-control" name="contents" id="contents" rows="10" cols="5"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="control-label">게시글유형</label>
+                                <select name="articleTypeCode" id="articleTypeCode" class="form-control">
+                                    <option value="0" selected>일반 게시글</option>
+                                    <option value="1">고정 게시글</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="control-label">게시여부</label>
+                                <select name="isDisplayCode" id="isDisplayCode" class="form-control">
+                                    <option value="0">게시안함</option>
+                                    <option value="1" selected>게시함</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="control-label">등록일시</label>
+                                <input type="text" class="form-control" disabled>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary">저장</button>
+                        <a href="/article/list" class="btn btn-info">목록</a>
+                    </div>
+
+                </div>
+            </form>
+        </div>

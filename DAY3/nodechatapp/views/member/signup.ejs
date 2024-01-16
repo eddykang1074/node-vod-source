@@ -1,0 +1,115 @@
+
+
+
+<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+					<div class="login-wrapper">
+
+						<!-- 회원가입 사용자 정보 입력 폼영역 -->
+						<form id="signupForm">
+
+							<div class="login-screen">
+								<div class="login-body">
+									<a href="index.html" class="login-logo">
+										<img src="/img/logo.svg" alt="Quick Chat">
+									</a>
+									<h6>Welcome to Quick Chat App,<br>Create your account.</h6>
+									<div class="field-wrapper">
+										<input type="email" id="email"  autofocus>
+										<div class="field-placeholder">Email ID</div>
+									</div>
+									<div class="field-wrapper">
+										<input type="password" id="password">
+										<div class="field-placeholder">Password</div>
+									</div>
+									<div class="field-wrapper mb-3">
+										<input type="password" id="confirmPassword">
+										<div class="field-placeholder">Confirm Password</div>
+									</div>
+
+									<div class="field-wrapper mb-3">
+										<input type="text" id="name">
+										<div class="field-placeholder">Name</div>
+									</div>
+
+									<div class="field-wrapper mb-3">
+										<input type="text" id="telephone">
+										<div class="field-placeholder">Telephone</div>
+									</div>
+
+									<div class="actions">
+										<button type="submit" class="btn btn-primary ml-auto">Sign Up</button>
+									</div>
+								</div>
+								<div class="login-footer">
+									<span class="additional-link">Have an account? <a href="login.html" class="btn btn-secondary">Login</a></span>
+								</div>
+							</div>
+						</form>
+					</div>
+</div>
+
+
+<script>
+
+	//사용자 입력값 유효성 검사 기능 구현-프론트엔드
+	$("#signupForm").submit(function(){
+
+		if($("#email").val() == ""){
+			alert("메일주소를 입력해주세요.");
+			$("#email").focus();
+			return false;
+		}
+
+		if($("#password").val() == ""){
+			alert("기본 암호를 입력해주세요.");
+			$("#password").focus();
+			return false;
+		}
+
+		if($("#confirmPassword").val() == ""){
+			alert("암호 확인값을 입력해주세요.");
+			$("#confirmPassword").focus();
+			return false;
+		}
+
+		if($("#password").val() != $("#confirmPassword").val()){
+			alert("암호 확인값이 일치하지 않습니다.");
+			$("#confirmPassword").val("");
+			$("#confirmPassword").focus();
+			return false;
+		}
+
+
+		if($("#name").val() == ""){
+			alert("이름을 입력해주세요.");
+			$("#name").focus();
+			return false;
+		}
+
+
+
+		//백엔드 REST API로 추출한 회원정보를 JSON 데이터로 AJAX방식을 전송합니다.
+
+		var member ={
+			"email":$("#email").val(),
+			"password":$("#password").val(),
+			"name":$("#name").val(),
+			"telephone":$("#telephone").val(),
+		};
+
+
+		//Jquery Ajax메소드를 통해 수집된 프론트엔드 json데이터를 백엔드 RESTFul 라우팅메소드로 전달합니다.
+
+		$.post('/api/member/entry',member).done(function(result){
+			console.log("회원정보 등록결과 값 출력:",result);
+			alert("정상적으로 회원가입이 완료되었습니다.");
+			location.href="/login";
+		});
+
+		return false;
+	});
+
+</script>
+
+
+

@@ -1,0 +1,52 @@
+<html>
+
+
+<body>
+    <h1>자바스크립트 객체 정의 할당하기</h1>
+
+    <script>
+
+        //자바스크립트로 객체를 정의하고 값을 할당해 봅시다.
+        var name = "강창훈";
+        var age = 40;
+
+        //자바스크립트로 사용자 객체의 구조와 기능을 정의합니다.
+        //객체의 속성명과 할당되는 변수명이 같은경우 변수 지정을 생략할수 있다.
+        var user = {
+            name,
+            age,
+            address:"경기도 성남시 수정구",
+            telephone:"010-5555-6666",
+            teach:function(){
+                return "teaching node.js now...";
+            }
+        }
+
+        console.log("사용자 객체 출력:",user);
+
+
+        let noteBook = {
+            productId:"1",
+            productName:"LG그램17",
+            price:1000,
+            brand:"LG전자"
+        };
+
+        noteBook.price = 2000;
+
+        console.log("LG그램노트북정보",noteBook);
+
+        //객체의 동적속성 추가기능 적용하기
+
+        //재고 동적속성 추가 
+        noteBook["stock"] = 200;
+
+        var asPosition = "GangNam";
+
+        noteBook[asPosition+"_1"] = "강남구 테헤란로";
+
+        console.log("LG그램노트북정보-동적속성 추가완료:",noteBook);
+
+    </script>
+</body>
+</html>

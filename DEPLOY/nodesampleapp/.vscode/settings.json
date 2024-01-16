@@ -1,0 +1,8 @@
+{
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
+    ],
+    "appService.defaultWebAppToDeploy": "/subscriptions/14c6f8c2-e3f7-4866-b526-00b04fda9432/resourceGroups/modu-app-rg/providers/Microsoft.Web/sites/modusampleapp",
+    "appService.deploySubpath": "."
+}

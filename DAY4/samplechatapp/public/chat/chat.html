@@ -1,0 +1,69 @@
+<html>
+<body>    
+<h1>모든 연결 사용자간 채팅</h1>
+    채팅 닉네임:<input type="text" id="nickname" value="창훈"><br>
+    전송 메시지:<input type="text" id="message" value=""><br>
+    <input type="button" id="btnSend" value="전송"><br>
+
+    <hr>
+    <ul id="chatHistory">
+     </ul>
+
+    <!-- jquery cdn 라이브러리 참조  -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+
+    
+    <!-- <script src="/socket.io/socket.io.js"></script> -->
+    <!-- socket.io javascript client library CDN 방식으로 독립적으로 참조  -->
+    <script src="https://cdn.socket.io/4.4.1/socket.io.min.js" crossorigin="anonymous"></script>
+
+    <!-- socket.io javascript client library 참조  -->
+    <!-- <script src="https://cdn.socket.io/4.5.2/socket.io.min.js" integrity="sha384-fKnu0iswBIqkjxrhQCTZ7qlLHOFEgNkRmK2vaO/LbTZSXdJfAu6ewRBdwHPhBo/H" crossorigin="anonymous"></script>
+    -->
+
+    <script>
+
+    //클라이언트(웹 브라우저) 서버 연결 소켓 객체 정의 
+    var socket = io.connect('http://localhost:3000/');
+
+    var socket = io.connect('http://localhost:3000/',{
+        transports: ['websocket']
+    });
+
+
+    // var sampleJWTToken="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJBNzVEMi1GQTE2RiIsImF1dGgiOiJyb2xlIiwidXNlciI6eyJ1c2VyTm0iOiLsnbTsnZjshLEiLCJjb21ObSI6IuudvOydtOyYqCIsImpvYlRpdCI6IuunpOuLiOyggCIsInRlYW0iOiLsnbjsgqwiLCJhdXRoVHlwZSI6IuyCrOyaqeyekCIsInVzZXJJZCI6IkE3NUQyLUZBMTZGIiwiYXZhcnRhUGF0aCI6Ii9ob21lL2duZXcvZGF0YS9yZXMvYXZhdGFyL0E3NUQyLUZBMTZGIn0sImlhdCI6MTY3MjE5Njk3NSwiZXhwIjoxNjc0Nzg4OTc1LCJpc3MiOiJnaW55dmFsbGV5In0.OsWQomTPsmt2SO84INvhdZKg0r2qGJc-qDdM1kJCPr0";
+
+    // var socket = io.connect(domainAddress,{
+    //     transports: ['websocket'],
+    //     auth: {
+    //         token:sampleJWTToken
+    //     }
+    // });
+
+
+    //전송 버튼 클릭 시 사용자 입력 메시지를 서버에 특정 이벤트 기능으로 전송한다.
+    $("#btnSend").click(function(){
+          var msg = $("#message").val();
+          var nickName = $("#nickname").val();
+          var sendMsg = `${nickName}:${msg}`;
+
+
+          //서버소켓의 broadcast라는 이벤트 수신기로 sendMsg 라는 메시지를 실시간으로 발송합니다.
+          //socket.emit()메소드는 웹브라우저에서 서버소켓모듈로 메시지를 보낼떄 사용합니다. 
+          socket.emit("broadcast",sendMsg);
+
+    });
+
+
+    //서버소켓에서 보낸 데이터를 수신하는 클라이언트 이벤트 수신기(receiveAll) 정의 
+    socket.on("receiveAll",function(receiveMsg){
+        console.log("메시지 수신기-데이터","receiveAll",receiveMsg);
+        $("#chatHistory").append(`<li>${receiveMsg}</li>`);
+    });
+
+   </script>
+   
+</body>
+</html>
+

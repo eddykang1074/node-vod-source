@@ -1,0 +1,120 @@
+            <!--우측 상단 헤더 영역 -->
+            <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-lg-10">
+                    <h2>게시글 목록조회</h2>
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="/">Home></a>
+                        </li>
+                        <li>
+                            <a>게시글정보목록></a>
+                        </li>
+                        <li class="active">
+                            <strong>조회</strong>
+                        </li>
+                    </ol>
+                </div>
+                <div class="col-lg-2">
+
+                </div>
+            </div>
+
+            <!--우측 콘텐츠 영역 -->
+            <div class="wrapper wrapper-content">
+
+                <!-- 게시글 조회옵션폼 영역 -->
+                <form action="/article/list" method="post" id="searchForm">
+                    <div class="ibox-content m-b-sm border-bottom">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="control-label" for="title">글제목</label>
+                                    <input type="text" name="title" id="title" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="control-label" for="articleTypeCode">게시글유형</label>
+                                    <select name="articleTypeCode" id="articleTypeCode" class="form-control">
+                                        <option value="9" selected>전체</option>
+                                        <option value="0">일반 게시글</option>
+                                        <option value="1">고정 게시글</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="control-label" for="isDisplayCode">게시여부</label>
+                                    <select name="isDisplayCode" id="isDisplayCode" class="form-control">
+                                        <option value="9" selected>전체</option>
+                                        <option value="0">게시안함</option>
+                                        <option value="1">게시함</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary">조회</button>
+                            <a href="/article/create" class="btn btn-info">신규</a>
+                        </div>
+                    </div>
+                </form>
+
+
+                <!-- 게시글 조회 목록표시영역 -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-content">
+                                <div class="table-responsive">
+
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th width="10%">글순번</th>
+                                                <th width="10%">글제목</th>
+                                                <th width="20%">게시글유형</th>
+                                                <th width="20%">조회수</th>
+                                                <th width="10%">IP주소</th>
+                                                <th width="10%">게시상태</th>
+                                                <th width="20%">수정일시</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="hoverTblBody">
+
+                                            <% for(var i =0;i < articles.length;i++){ %>
+                                                <tr>
+                                                    <td><%= articles.length - i %></td>
+                                                    <td><a href="/article/modify/<%=articles[i].article_id%>"><%=articles[i].title%></a></td>
+                                                    <td>
+                                                        <% if(articles[i].article_type_code == 0){%>
+                                                            일반 게시글
+                                                        <% } else{ %>
+                                                            고정 게시글
+                                                        <% }%>
+                                                    </td>
+                                                    <td><%=articles[i].view_count%></td>
+                                                    <td><%=articles[i].ip_address%></td>
+                                                    <td>
+                                                        <% if(articles[i].is_display_code == 0){%>
+                                                            게시안함
+                                                        <% } else{ %>
+                                                            게시함
+                                                        <% }%>
+                                                    </td>
+                                                    <td><%= moment(articles[i].edit_date).format("YYYY-MM-DD HH:mm:ss")%></td>
+                                                </tr>
+                                            <% } %>
+          
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>

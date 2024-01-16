@@ -1,0 +1,27 @@
+<html>
+
+<body>
+    <h1>템플릿 문자열 실습</h1>
+
+
+
+    <script>
+
+        //전통적인 자바스크립트로 문자열과 변수를 조합하는경우 가독성 떨어진다.
+
+        const name = "강창훈";
+        const age = 40;
+        let local = "경기도 성남시";
+
+        let introduction = "저를 소개합니다. 이름은 "+ name +" 이고  나이는 "+ age + " 살이고 사는곳은 "+ local+" 입니다.";
+
+        console.log("전통적인 문자열과 변수조합 기법결과:",introduction);
+
+
+        let introduction2 = `저를 소개합니다. 이름은 ${name}이고 나이는 ${age}살이고 사는곳은 ${local}입니다.`;
+        console.log("템플릿 문자열 방식을 통해 만들어진 변수값 출력합니다.",introduction2);
+
+
+    </script>
+</body>
+</html>

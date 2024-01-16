@@ -1,0 +1,47 @@
+
+
+<html>
+<body>
+<h1>프론트엔드 AJAX 파일 업로드 샘플</h1>
+
+
+첨부파일선택: <input type="file" id="files" name="files" />
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
+<script>
+
+    $("#files").change(function () {
+
+           var data = new FormData();
+
+           data.append("files", $("input[name=files]")[0].files[0]);
+
+            var fileName = $("#files").val();
+            fileName = fileName.slice(fileName.indexOf(".") + 1).toLowerCase();
+
+           if (fileName != "jpg" && fileName != "png" && fileName != "gif" && fileName != "bmp") {
+                        alert("이미지 파일은 (jpg, png, gif, bmp) 형식만 등록 가능합니다.");
+                        $("#files").val("");
+                        return false;
+            } else {
+                        $.ajax({
+                            data: data,
+                            type: "POST",
+                            url: '/api/channel/upload',
+                            cache: false,
+                            contentType: false,
+                            processData: false,
+                            success: function (response) {
+                                console.log("업로된 파일정보",response);
+                                alert(response.filePath);
+                            }
+                        });
+                    }
+                });
+    </script>
+    
+
+</body>
+</html>

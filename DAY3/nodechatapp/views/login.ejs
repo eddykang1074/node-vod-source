@@ -1,0 +1,97 @@
+
+
+<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+	<div class="login-wrapper">
+
+
+		<form id="loginForm">
+							<div class="login-screen">
+								<div class="login-body">
+									<a href="index.html" class="login-logo">
+										<img src="/img/logo.svg" alt="Quick Chat">
+									</a>
+									<h6>Welcome back,<br>Please login to your account.</h6>
+									<div class="field-wrapper">
+										<input type="email" id="email" autofocus>
+										<div class="field-placeholder">Email ID</div>
+									</div>
+									<div class="field-wrapper mb-3">
+										<input type="password" id="password">
+										<div class="field-placeholder">Password</div>
+									</div>
+									<div class="actions">
+										<a href="forgot-password.html">Forgot password?</a>
+										<button type="submit" class="btn btn-primary">Login</button>
+									</div>
+								</div>
+								<div class="login-footer">
+									<span class="additional-link">No Account? <a href="signup.html" class="btn btn-secondary">Sign Up</a></span>
+								</div>
+							</div>
+		</form>
+
+
+	</div>
+</div>
+
+
+<script>
+
+	//로그인폼에서 사용자 입력이 완료되면 실행됨
+	$("#loginForm").submit(function(){
+
+		if($("#email").val() == ""){
+			alert("메일주소를 입력해주세요.");
+			$("#email").focus();
+			return false;
+		}
+
+		if($("#password").val() == ""){
+			alert("사용자 암호를 입력해주세요.");
+			$("#password").focus();
+			return false;
+		}
+
+		//AJAX로 백엔드 RESTFul 로그인 라우팅메소드를 호출해줍니다.
+		var loginData ={
+			"email":$("#email").val(),
+			"password":$("#password").val()
+		};
+
+		//JQuery AJAX 를 이용해 백엔드 login API를 호출합니다.
+		$.ajax({
+			url:"/api/member/login",
+			type:"POST",
+			data:loginData,
+			success:function(result){
+				console.log("로그인 결과값 확인:",result);
+
+				if(result.code == "200"){
+					//정상적인 로그인 성공시 발급된 jwt토큰값을 추출하여 웹브라우저의 localStorage저장공간에 저장합니다.
+					console.log("발급된 토큰값을 웹브라우저 로컬스토리지에 저장합니다.",result.data);
+					localStorage.setItem('modutoken',result.data);
+					location.href="/chat";
+
+				}else{
+					if(result.code == "400" && result.data =="notExistEmail"){
+						alert(result.result);
+						return false;
+					}
+
+					if(result.code == "400" && result.data =="notCorrectPassword"){
+						alert(result.result);
+						return false;
+					}
+				}
+
+			}
+		});
+
+		return false;
+
+	});
+
+
+
+
+</script>

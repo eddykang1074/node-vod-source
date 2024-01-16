@@ -1,0 +1,108 @@
+
+
+            <!--우측 콘텐츠 헤더영역 -->
+            <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-lg-10">
+                    <h2>사용자정보수정</h2>
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="/">Home></a>
+                        </li>
+                        <li>
+                            <a>사용자정보관리></a>
+                        </li>
+                        <li class="active">
+                            <strong>확인/수정</strong>
+                        </li>
+                    </ol>
+                </div>
+                <div class="col-lg-2">
+
+                </div>
+            </div>
+
+            <!--우측 콘텐츠 영역 -->
+            <div class="wrapper wrapper-content">
+                <form action="/member/modify/1" method="post">
+                    <div class="ibox-content m-b-sm border-bottom">
+
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="control-label">메일주소</label>
+                                    <input type="text" name="email" class="form-control" value="<%=member.email%>">
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="control-label">비밀번호</label>
+                                    <input type="password" name="password" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="control-label">이름</label>
+                                    <input type="text" name="name" class="form-control" value="<%=member.name%>">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="control-label">사진업로드</label>
+                                    <input type="file" name="file" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="control-label">전화번호</label>
+                                    <input type="text" name="telephone" class="form-control" value="<%=member.telephone%>">
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="control-label">생년월일</label>
+                                    <input type="text" name="birthday" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="control-label">회원가입유형</label>
+                                    <select name="entryTypeCode" class="form-control">
+                                        <option value="0">직접가입</option>
+                                        <option value="1">SNS-Facebook</option>
+                                        <option value="2">SNS-Google</option>
+                                        <option value="3">SNS-Kakao</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="control-label">가입상태정보</label>
+                                    <select name="entryStateCode" class="form-control">
+                                        <option value="0">일시중지</option>
+                                        <option value="1">사용중</option>
+                                        <option value="2">탈퇴상태</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="control-label">가입일시</label>
+                                    <input type="text"  class="form-control" value="2022-02-20" readonly />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary">저장</button>
+                            <a href="/member/list" class="btn btn-info">목록</a>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
